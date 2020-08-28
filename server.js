@@ -7,6 +7,7 @@ dotEnv.config();
 
 
 const app = express();
+const userRoutes = require('./routes/users');
 
 require('./config/db');
 
@@ -17,8 +18,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 
 app.use(morgan("dev"))
 
+app.use("/users", userRoutes);
 
 const PORT = process.env.PORT || 7000;
+
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
